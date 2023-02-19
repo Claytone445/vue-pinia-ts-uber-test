@@ -1,40 +1,40 @@
 <template>
-  <div class="mt-4">
-    <div class="test">{{ movieStore.movies }}</div>
-
-    <v-img class="mx-auto" max-width="200px" src="src/assets/tv-movie.svg">
-    </v-img>
-
-    <v-card class="mx-auto" max-width="600">
-      <v-text-field class="ma-4" :rules="rules"></v-text-field>
-      <v-img
-        class="align-end text-white"
-        height="200"
-        src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-        cover
-        center
-      >
-        <v-card-title>Movie:</v-card-title>
+  <div class="mt-4 d-flex flex-column">
+    <v-card class="mx-auto" width="100%" max-width="600">
+      <v-img class="mx-auto" src="src/assets/tv-movie.svg" max-width="250">
       </v-img>
-
-      <v-card-subtitle class="pt-4"> Number 10 </v-card-subtitle>
-
-      <v-card-text>
-        <div>Whitehaven Beach</div>
-
-        <div>Whitsunday Island, Whitsunday Islands</div>
-      </v-card-text>
-
-      <v-card-actions>
-        <v-btn x-large color="green"> Watch </v-btn>
-        <v-btn x-large color="red"> Unwatched </v-btn>
-      </v-card-actions>
+      <v-btn x-large class="d-flex mx-auto" color="green" center
+        >Favourites</v-btn
+      >
+      <v-btn
+        x-large
+        class="ma-6 mx-auto"
+        color="orange"
+        v-if="movieStore.activeTab === 2"
+        >Search</v-btn
+      >
+      <v-text-field class="ma-4" label="search" :rules="rules"></v-text-field>
     </v-card>
+    <h3 class="d-flex mx-auto ma-2">Watched movies</h3>
+    <movie-card
+      v-for="movie of movieStore.watchedMovies"
+      :key="movie.id"
+      :movie="movie"
+    />
+    <h3 class="d-flex mx-auto ma-2">Movies</h3>
+    <div v-if="movieStore.activeTab === 1">
+      <movie-card
+        v-for="movie of movieStore.movies"
+        :key="movie.id"
+        :movie="movie"
+      />
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { useMovieStore } from "@/stores/MovieStore";
+import MovieCard from "@/components/MovieCard.vue";
 const movieStore = useMovieStore();
 </script>
 <style scoped></style>
