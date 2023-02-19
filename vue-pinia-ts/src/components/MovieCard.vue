@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto" max-width="600">
+  <v-card class="mx-auto" max-width="600" ma-2>
     <v-img
       class="align-end text-white"
       height="200"
@@ -22,16 +22,21 @@
     </v-card-text>
 
     <v-card-actions>
-      <v-btn x-large color="green">
+      <v-btn x-large color="green" @click="movieStore.switchWatched(movie.id)">
         <span v-if="!movie.isWatched">Watched</span>
         <span v-else>Unwatched</span>
       </v-btn>
-      <v-btn x-large color="red">Delete</v-btn>
+      <v-btn x-large color="red" @click="movieStore.deleteMovie(movie.id)"
+        >Delete</v-btn
+      >
     </v-card-actions>
   </v-card>
 </template>
 
 <script lang="ts" setup>
+import { useMovieStore } from "@/stores/MovieStore";
+const movieStore = useMovieStore();
+
 const props = defineProps({
   movie: {
     type: Object,
