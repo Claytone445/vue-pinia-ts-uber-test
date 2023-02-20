@@ -39,7 +39,7 @@ export const useMovieStore = defineStore("movieStore", () => {
     },
     { deep: true }
   );
-
+  //need to be returnable
   return {
     movies,
     activeTab,

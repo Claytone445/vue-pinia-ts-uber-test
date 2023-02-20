@@ -1,7 +1,11 @@
 <template>
   <div class="mt-4 d-flex flex-column">
-    <v-card class="mx-auto" width="100%" max-width="600">
-      <v-img class="mx-auto" src="src/assets/tv-movie.svg" max-width="250">
+    <v-card class="mx-auto logo__Color" width="100%" max-width="600">
+      <v-img
+        class="mx-auto ma-4"
+        src="src/assets/movieLogo.png"
+        max-width="250"
+      >
       </v-img>
       <v-btn
         x-large
