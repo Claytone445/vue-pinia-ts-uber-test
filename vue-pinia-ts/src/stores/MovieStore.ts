@@ -2,27 +2,8 @@ import { defineStore } from "pinia";
 
 export const useMovieStore = defineStore("movieStore", {
   state: () => ({
-    movies: [
-      {
-        id: 1,
-        original_title: "Spider-Man",
-        overview:
-          "After being bitten by a genetically altered spider at Oscorp, nerdy but endearing high school student Peter Parker is endowed with amazing powers to become the superhero known as Spider-Man.",
-        poster_path: "/gh4cZbhZxyTbgxQPxD0dOudNPTn.jpg",
-        release_date: "2002-05-01",
-        isWatched: false,
-      },
-      {
-        id: 2,
-        original_title: "The Batman",
-        overview:
-          "In his second year of fighting crime, Batman uncovers corruption in Gotham City that connects to his own family while facing a serial killer known as the Riddler.",
-        poster_path: "/b0PlSFdDwbyK0cf5RxwDpaOJQvQ.jpg",
-        release_date: "2022-03-01",
-        isWatched: true,
-      },
-    ],
-    activeTab: 1,
+    movies: [],
+    activeTab: 2,
   }),
   getters: {
     watchedMovies() {
@@ -32,15 +13,16 @@ export const useMovieStore = defineStore("movieStore", {
       return this.movies.length;
     },
     checkWatched() {
-      const movieKeys = Object.values(this.movies);
-      let isWatchedOption = null;
-      for (let prop in movieKeys) {
-        if (movieKeys[prop].isWatched === true) {
-          isWatchedOption = movieKeys[prop].isWatched;
-        }
-      }
-
-      return isWatchedOption;
+      // const movieKeys = Object.values(this.movies);
+      // let isWatchedOption = null;
+      // for (let prop in movieKeys) {
+      //   if (movieKeys[prop].isWatched === true) {
+      //     isWatchedOption = movieKeys[prop].isWatched;
+      //   }
+      // }
+      //
+      // return isWatchedOption;
+      return this.movies.isWatched;
     },
   },
   actions: {
@@ -48,7 +30,7 @@ export const useMovieStore = defineStore("movieStore", {
       this.activeTab = id;
     },
     switchWatched(id) {
-      const idx = this.movies.findIndex((element) => element.id === id);
+      const idx = this.movies.findIndex((el) => el.id === id);
       this.movies[idx].isWatched = !this.movies[idx].isWatched;
     },
     deleteMovie(id) {

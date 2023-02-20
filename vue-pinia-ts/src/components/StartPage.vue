@@ -8,21 +8,12 @@
         class="d-flex mx-auto"
         color="green"
         center
-        @click="setTab(2)"
-        v-if="movieStore.activeTab === 1"
+        @click="setTab(1)"
         >Favourites</v-btn
       >
-      <v-btn
-        x-large
-        class="d-flex mx-auto"
-        color="orange"
-        v-if="movieStore.activeTab === 2"
-        @click="setTab(1)"
-        >Search</v-btn
-      >
-      <v-text-field class="ma-4" label="search" :rules="rules"></v-text-field>
+      <SearchMovie />
     </v-card>
-    <h3 class="d-flex mx-auto ma-2" v-if="movieStore.checkWatched === true">
+    <h3 class="d-flex mx-auto ma-2" v-if="movieStore.checkWatched">
       Watched movies:
     </h3>
     <div v-if="movieStore.activeTab === 1">
@@ -32,12 +23,9 @@
         :movie="movie"
       />
     </div>
-    <h3 class="d-flex mx-auto ma-2" v-if="movieStore.activeTab === 1">
+    <h3 class="d-flex mx-auto ma-2" v-if="movieStore.activeTab === 2">
       All Movies:
     </h3>
-    <!--    <h3 class="d-flex mx-auto ma-2" v-if="movieStore.activeTab === 1">
-      Movies number: {{ movieStore.amountMovies }}
-    </h3>-->
     <div v-if="movieStore.activeTab === 1">
       <movie-card
         v-for="movie of movieStore.movies"
@@ -51,6 +39,7 @@
 <script lang="ts" setup>
 import { useMovieStore } from "@/stores/MovieStore";
 import MovieCard from "@/components/MovieCard.vue";
+import SearchMovie from "@/components/SearchMovie.vue";
 //here we are using pinia store
 const movieStore = useMovieStore();
 //methods in composition api style
