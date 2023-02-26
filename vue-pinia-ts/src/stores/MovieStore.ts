@@ -22,15 +22,15 @@ export const useMovieStore = defineStore("movieStore", () => {
   };
 
   const watchedMovies = computed(() => {
-    movies.value.filter((element) => element.isWatched);
+    return movies.value.filter((element) => element.isWatched);
   });
 
   const amountMovies = computed(() => {
-    movies.value.length;
+    return movies.value.length;
   });
 
   const checkWatched = computed(() => {
-    movies.value.isWatched;
+    return movies.value.isWatched;
   });
 
   watch(
