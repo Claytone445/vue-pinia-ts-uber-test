@@ -32,7 +32,7 @@ import { useSearchStore } from "@/stores/SearchStore";
 const movieStore = useMovieStore();
 const searchStore = useSearchStore();
 
-const setTab = (id) => {
+const setTab = (id: number) => {
   movieStore.setActiveTab(id);
 };
 const searchMovie = ref("");

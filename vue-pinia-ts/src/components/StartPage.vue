@@ -47,7 +47,7 @@ import SearchMovie from "@/components/SearchMovie.vue";
 //here we are using pinia store
 const movieStore = useMovieStore();
 //methods in composition api style
-const setTab = (id) => {
+const setTab = (id: number) => {
   movieStore.setActiveTab(id);
 };
 </script>

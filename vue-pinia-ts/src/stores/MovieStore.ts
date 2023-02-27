@@ -1,9 +1,9 @@
 import { defineStore } from "pinia";
 import { ref, computed, watch } from "vue";
-import type Watched from "@/types/movie";
+import type Movie from "@/types/movie";
 
 export const useMovieStore = defineStore("movieStore", () => {
-  const movies = ref([]);
+  const movies = ref<Array<Movie>>([]);
   const activeTab = ref(2);
   const moviesInLocalStorage = localStorage.getItem("movies");
   if (moviesInLocalStorage) {
@@ -30,7 +30,7 @@ export const useMovieStore = defineStore("movieStore", () => {
   });
 
   const checkWatched = computed(() => {
-    return movies.value.isWatched;
+    return movies.value.find((element) => element.isWatched === true);
   });
 
   watch(
